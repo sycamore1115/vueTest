@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+v-model不过是一个语法糖，会在不同的表单上智能处理，真正还是用的 v-bind绑定 和 触发事件：
+    text 和 textarea 元素使用 v-bind绑定value属性 和 触发input事件；（只是在input事件上做了一点改变，在没有输入完拼音时不会显示）
+    checkbox 和 radio 使用 v-bind绑定checked属性(checked==value时，为选中状态) 和 change 事件；（相同v-model可替代name属性）
+   （select基本不用）select 字段将 value 作为 prop 并将 change 作为事件。
+ -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" :value='text'>
+        <input type="text"  v-model='text'>
+        <p>输入的内容是：</p>
+        <p>{{text}}</p>
+        <hr>
+        <!-- <textarea id='t1' placeholder="输入。。。">{{message}}</textarea> -->
+        <textarea id='t2' placeholder="输入。。。" :value='message'></textarea>
+        <textarea v-model.number='message' placeholder="输入。。。">12345</textarea>
+        <textarea @input='handleInput' placeholder="输入。。。" :value='message'></textarea>
+        <p>输入的内容是：</p>
+        <p>{{message}}</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                text: "11111",
+                message: '99999'
+            },
+            methods: {
+                handleInput: function (e) {
+                    this.message = e.target.value;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

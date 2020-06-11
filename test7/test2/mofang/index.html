@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header></header>
+
+    <div id="app" v-cloak>
+        <tabs v-model='activeKey'>
+            <!-- label和name是最外层app传进去的，要使用在tabs组件中的，不是使用在pane标签中 -->
+            <pane label='标签一' name='1' :closable='false'>
+                标签一的内容
+            </pane>
+            <pane label='标签二' name='2' :closable='true'>
+                标签二的内容
+            </pane>
+            <pane label='标签三' name='3' :closable='true'>
+                标签三的内容
+            </pane>
+        </tabs>
+    </div>
+
+    <footer></footer>
+
+    <script src="pane.js"></script>
+    <script src="tabs.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                activeKey:'2'
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <p v-cloak>{{initCount}}</p>
+        <!-- v-model => v-bind:value='initCount' + @input -->
+        <input-number v-model='initCount' :min='0' :max='100'></input-number>
+    </div>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <script src="./input-number.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

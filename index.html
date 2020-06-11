@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var u = document.getElementById("u");
+            for (var i = 0; i < 10; i++) {
+                var l = document.createElement("li");
+                l.innerText = i;
+                l.onclick = (function (i) {
+                    return function () {
+                        console.log(i);
+                    }
+                })(i)
+                u.appendChild(l);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <ul>
+            <li v-for='book in books'>{{book.name}}</li>
+        </ul> -->
+        <!-- hello world! -->
+        <!-- <input type="checkbox" class="input1"> -->
+        <!-- <input type="text">
+        <button>click</button>         -->
+        <ul id='u'>
+
+        </ul>
+    </div>
+    <script>
+        // var app = document.getElementById("app");
+        // app.innerText="你好！";
+        // for (var i = 0; i < 5; i++) {
+        //     // var d = document.createElement("div");
+        //     // d.innerText = "你好";
+        //     // app.appendChild(d);
+        //     app.innerHTML +="<div>你好</div>"
+        // }
+        // app.style.color = 'red';
+        // app.className = 'red';
+        // app.style.display = "none";
+        // app.style.backgroundColor = 'blue';
+        // app.style.width = "50%";
+        // var input1 = document.getElementsByClassName("input1")[0];
+        // input1.setAttribute("checked",true);
+        // input1.setAttribute("width","100px");
+        // input1.setAttribute("data","123");
+        // input1[0].value = "123";
+        // var input1 = document.getElementsByTagName("input")[0];
+        // var button = document.getElementsByTagName("button")[0];
+        // button.addEventListener("click",function(e){
+        //     var value = input1.value;
+        //     // alert(value);
+        //     console.log(e);
+        // })
+        // var u = document.getElementById("u");
+        // for (var i = 0; i < 10; i++) {
+        //     var l = document.createElement("li");
+        //     l.innerText = i;
+        //     l.onclick = (function (i) {
+        //         return function () {
+        //             console.log(i);
+        //         }
+        //     })(i)
+        //     u.appendChild(l);
+        // }
+        // var li = document.getElementsByTagName("li");
+        // u.addEventListener("click",function(e){
+        //     // console.log(e);
+        //     if(e.target.tagName != "UL"){
+        //         alert(e.target.innerText);
+        //     }
+        // })
+    </script>
+</body>
+
+</html>
+<!-- <script src="./vuejs/index.js"></script> -->

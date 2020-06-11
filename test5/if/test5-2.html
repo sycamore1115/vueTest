@@ -1,0 +1,35 @@
+<!--条件指令：v-if v-else-if v-else v-show -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- if(status===1){
+            
+        }else if(status===2){
+
+        }else{
+
+        } -->
+        <p v-if = "status===1">当status为1时显示该行</p>
+        <p v-else-if = "status===2">当status为2时显示该行</p>
+        <p v-else>否则显示该行</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                status: 4
+            }
+        })
+    </script>
+</body>
+
+</html>

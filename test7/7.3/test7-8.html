@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!-- 
+    父组件向子组件传递数据：
+        在子组件上绑定父组件的: value='total' => v-model='total'语法糖，相当于使用v-bind绑定value属性和触发input事件
+        props中接受传入的value ： props:['value'],
+        将value渲染到组件模板中 ： :value='value'
+    子组件向父组件传递数据：
+        点击触发子组件里的input事件 ： @input='updateValue'
+        找到click的对应方法updateValue : updateValue
+        子组件的updateValue方法里用$emit来向外触发事件input，附加参数都会传给监听器回调 : this.$emit('input', event.target.value);
+        父组件v-model监听子组件input事件 : v-model='total'
+        将参数的值赋给total : v-model='total'
+ -->
+<body>
+    <div id="app">
+        <p>总数：{{ total }}</p>
+        <my-component v-model='total'></my-component>
+        <button @click='handleReduce'>-1</button>
+    </div>
+    <script>
+        Vue.component('myComponent', {
+            props:['value'],
+            template: `<input :value='value' @input='updateValue'>`,
+            methods: {
+                updateValue: function (event) {
+                    this.$emit('input', event.target.value);
+                }
+            },
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            },
+            methods: {
+                handleReduce: function () {
+                    this.total --;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
+

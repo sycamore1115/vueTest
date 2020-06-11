@@ -1,0 +1,51 @@
+<!--基本指令：v-cloak v-once  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!--基本指令：v-cloak  -->
+<!-- <body>
+    <div id="app" v-cloak>
+        {{message}}
+    </div>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <script>
+        // 在执行代码前需要等待3秒
+        setTimeout(() => {
+            new Vue({
+            el: '#app',
+            data: {
+                message : '这是一段文本'
+            }
+        })
+        }, 3000);  
+    </script>
+</body> -->
+<!--基本指令：v-once  -->
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <div v-once>
+            <span>{{message}}</span>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: '这是一段文本'
+            }
+        })
+    </script>
+</body>
+
+</html>

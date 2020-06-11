@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 非父子组件传值 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+        <component-a></component-a>
+    </div>
+    <script>
+        // 1.创建一个名为bus的空vue实例
+        var bus = new Vue();
+        // 2.定义全局组件component-a
+        Vue.component('component-a',{
+            template: '<button @click="handleEvent">传递事件</button>',
+            methods: {
+                //点击按钮会通过bus把事件on-message发出去
+                handleEvent: function(){
+                    bus.$emit('on-message','来自组件component-a的内容')
+                }
+            },
+        })
+        // 3.创建vue实例app
+        new Vue({
+            el: '#app',
+            data: {
+                message:''
+            },
+            //在生命周期mounted钩子函数中监听来自bus的事件on-message
+            mounted: function(){
+                bus.$on('on-message', msg=>this.message = msg );
+            }
+        })
+    </script>
+</body>
+
+</html>
+

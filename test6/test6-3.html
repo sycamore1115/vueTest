@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" :checked='picked1' id="single1"  @change='changePicked()'>
+        <label for="single1">选择状态：{{picked1}}</label>
+        <br>
+        <input type="checkbox" v-model='picked2' id="single2">
+        <label for="single2">选择状态：{{picked2}}</label>
+        <br>
+        <hr>
+        <input type="checkbox" v-model='checked' value="html" id="html">
+        <label for="html">HTML</label>
+        <br>
+        <input type="checkbox" v-model='checked' value="js" id="js">
+        <label for="js">JavaScript</label>
+        <br>
+        <input type="checkbox" v-model='checked' value="css" id="css">
+        <label for="css">CSS</label>
+        <br>
+        <P>选择的项是：{{checked}}</P>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                picked1:true,
+                picked2:true,
+                checked:['html','css'],
+                url:false
+            },
+            methods: {
+                changePicked:function(){
+                    this.picked1 = !this.picked1;
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

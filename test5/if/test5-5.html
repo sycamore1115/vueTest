@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if = "status===1">if当status为1时显示该行</p>
+        <p v-show = "status===1">show当status为1时显示该行</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                status: 2
+            }
+        })
+    </script>
+</body>
+
+</html>

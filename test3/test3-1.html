@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 方法1 直接在{{}}里进行操作 用于简单的操作 -->
+        <!-- {{text.split(',').reverse().join('|')}} -->
+        <!-- 方法2 利用filters 基本很少用filters-->
+        <!-- {{text|reverseText1}} -->
+        <!-- 方法3 利用methods 用的时候要带()-->
+        <!-- {{reverseText2()}} -->
+        <!-- {{reverseText2()}} -->
+        <!-- 方法4 利用computed 用的时候不要带()-->
+        <!-- {{reverseText3}}
+        {{reverseText3}} -->
+        <!-- {{now1()}}
+        {{now1()}} -->
+        {{now2}}
+        {{now2}}
+    </div>
+    <!-- js -->
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                text:'hello,World'
+            },
+            filters:{
+                reverseText1:function(text){
+                    return text.split(',').reverse().join('|');
+                }
+            },
+            methods: {
+                reverseText2:function(){
+                    console.log("methods");
+                    return this.text.split(',').reverse().join('|');
+                },
+                now1: function(){
+                    console.log("methods");
+                    return Date.now();
+                }
+            },
+            computed: {
+                reverseText3:function(){
+                    console.log("computed");
+                    return this.text.split(',').reverse().join('|');
+                },
+                now2: function(){
+                    console.log("computed");
+                    return Date.now();
+                }
+            },
+        })
+    </script>
+</body>
+</html>

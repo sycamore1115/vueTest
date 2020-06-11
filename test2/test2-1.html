@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name" placeholder="你的名字">
+        <h1>hello，{{name}}</h1>
+        <h1>hello，{{reverseText3}}</h1>
+    </div>
+    <!-- js -->
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                name:'phoeny,wu'
+            },
+            created:function(){
+                console.log(this.name);   //钩子的this值指向调用他的vue实例
+                console.log(this.$el);  //created阶段尚未挂载
+            },
+            mounted:function(){
+                console.log(this.name);
+                console.log(this.$el);
+            },
+            computed: {
+                reverseText3:function(){
+                    console.log("computed");
+                    return this.name.split(',').reverse().join('|');
+                }
+            },
+        })
+    </script>
+</body>
+</html>

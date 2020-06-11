@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <a href="http://www.apple.com" @click="handleClick1('禁止打开',$event)">链接1</a>
+        <a href="http://www.apple.com" @click.prevent="handleClick2('禁止打开')">链接2</a>
+        <!-- 按键修饰符 -->
+        <input type="text" @keyup.enter="key1">
+        <p @click.ctrl="key2">{{show}}</p>
+       
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                show:"123"
+            },
+            methods: {
+                handleClick1: function (message,event) {
+                    event.preventDefault();
+                    window.alert(message);
+                },
+                handleClick2: function (message,event) {
+                    window.alert(message);
+                },
+                key1:function(){
+                    this.show = '789';
+                },
+                key2: function(){
+                    this.show = '456';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

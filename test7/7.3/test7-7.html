@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!-- 1.点击触发子组件里的click事件 
+     2.找到click的对应方法handleIncrease
+     3.子组件的handleIncrease方法里用$emit来向外触发事件increase，附加参数都会传给监听器回调
+     4.父组件监听到子组件触发的自定义事件increase
+     5.父组件找到自定义事件对应的方法handleGetTotal,并将参数传递过去
+ -->
+<body>
+    <div id="app">
+        <!-- <my-component></my-component> -->
+
+        <!-- 子组件向父组件传递数据 -->
+        <p>总数：{{ total }}</p>
+        <my-component @increase='handleGetTotal' @reduce='handleGetTotal'></my-component>
+
+        <!-- 添加native修饰符，监听的就不是内部组件向外触发的自定义事件了，而是原生事件 -->
+        <my-component @click.native="nativeEvent"></my-component>
+    </div>
+    <script>
+        Vue.component('myComponent', {
+            template: `
+            <div>
+               <button @click="handleIncrease">+1</button>
+               <button @click="handleReduce">-1</button>
+            </div>`,
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                // handleIncrease: function () {
+                //     ++this.counter;
+                // },
+                // handleReduce: function () {
+                //     --this.counter;
+                // }
+                handleIncrease: function () {
+                    //$emit（）方法的第一个参数是自定义事件的名称
+                    this.$emit('increase', ++this.counter);
+                },
+                handleReduce: function () {
+                    this.$emit('reduce', --this.counter);
+                }
+            },
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            },
+            methods: {
+                handleGetTotal: function (total) {
+                    this.total = total;
+                },
+                nativeEvent: function () {
+                    console.log("原生事件")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="out">
+        <my-component1></my-component1>
+        <!-- <my-component2></my-component2> -->
+    </div>
+    <div id="app">
+        <my-component1></my-component1>
+        <my-component2></my-component2>
+    </div>
+    <script>
+         var Child1 = {
+            template:'<div>这里是组件的内容1</div>',
+        };
+        var Child2 = {
+            template:'<div>这里是组件的内容2</div>',
+        };
+
+        // 全局注册组件，要在实例创建前注册
+        Vue.component('my-component1', {
+            template: '<div>这里是组件的内容1</div>'
+        });
+        // Vue.component('my-component1',Child1);
+
+        new Vue({
+            el: '#out'
+        })
+
+        new Vue({
+            el: '#app',
+            // 局部注册组件
+            components: {
+                'my-component2': {
+                    template: '<div>这里是组件的内容2</div>'
+                }
+                // 'my-component2': Child2
+            }
+        })
+    </script>
+</body>
+
+</html>

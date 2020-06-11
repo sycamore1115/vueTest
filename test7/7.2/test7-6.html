@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <my-component></my-component> -->
+        <my-component :prop-a='123' prop-b='hello' :prop-d=12 :prop-e=[4,5,6] prop-f='18'></my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            // props: [
+            //     propA, propB, propC, propD, propE, propF
+            // ],
+            props: {
+                propA: Number,
+                propB: [String, Number],
+                propC: {
+                    type: Boolean,
+                    default: true
+                },
+                propD: {
+                    type: Number,
+                    required: true
+                },
+                propE: {
+                    type: Array,
+                    default: function () {
+                        return [];
+                    }
+                },
+                propF: {
+                    validator: function (value) {
+                        return value > 10;
+                    }
+                },
+            },
+            template: 
+            `<div>
+                <p>A:{{propA}}</P>
+                <p>B:{{propB}}</P>
+                <p>C:{{propC}}</P>
+                <p>D:{{propD}}</P>
+                <p>E:{{propE}}</P>
+                <p>F:{{propF}}</P>
+             </div>`
+        })
+        new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>

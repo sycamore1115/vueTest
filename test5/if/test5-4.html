@@ -1,0 +1,35 @@
+<!--条件指令：v-if v-else-if v-else v-show -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button id="myBtn">切换输入类型</button>
+    </div>
+    <script>
+        //首次渲染
+        var app = document.getElementById("app");
+        var label = document.createElement("label");
+        var input = document.createElement("input");
+        app.insertBefore(input, app.firstChild);
+        app.insertBefore(label, app.firstChild);
+        label.innerText = "用户名：";
+        input.placeholder = "输入用户名"
+        //重新渲染，没有重复上面整个过程，只是改变了label.innerText和input.placeholder
+        // 为按钮添加事件
+        var btn = document.getElementById("myBtn");
+        btn.addEventListener("click", function () {
+            label.innerText = "邮箱：";
+            input.placeholder = "输入邮箱"
+        }, false);
+    </script>
+</body>
+
+</html>

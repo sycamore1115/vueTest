@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <table border="1">
+            <!-- 复用thead -->
+            <!-- <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>商品单价</th>
+                    <th>购买数量</th>
+                </tr>
+            </thead> -->
+            <!-- <my-thead></my-thead> -->
+            <thead is='my-thead'></thead>
+            <tbody>
+                <tr>
+                    <td>苹果</td>
+                    <td>5</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        Vue.component('my-thead', {
+            template: '<thead><tr><th>商品名称</th><th>商品单价</th><th>购买数量</th></tr></thead>'
+        });
+        new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

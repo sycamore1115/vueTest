@@ -1,0 +1,17 @@
+[v-cloak] {
+    display: none;
+}
+
+table{
+    margin: 10px;
+    border: 1px black solid;
+    width: 500px;
+}
+th,td{
+    border: 1px black solid;
+    text-align: center;
+}
+th{
+    background: #f1f1f1;
+}
+

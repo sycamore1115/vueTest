@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <template v-if="isNull">
+        <table>
+            <template v-for='(list,index) in lists'>
+                <thead v-if='list.pLists.length'>
+                    <tr>
+                        <th>{{list.name}}</th>
+                        <th>商品名称</th>
+                        <th>商品单价</th>
+                        <th>购买数量</th>
+                        <th>操作</th>
+                        <th><input type="checkbox" @click='selectAll(index)' :checked='list.checkedAll'></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for='(item,pIndex) in list.pLists'>
+                        <td>{{pIndex + 1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td><button @click='handleCount(0,item)'>-</button> {{item.count}} <button
+                                @click='handleCount(1,item)'>+</button></td>
+                        <td><button @click='removeGoods(index,pIndex)'>移除</button></td>
+                        <td><input type="checkbox" :checked='item.checked' @click='select(item,index)'></td>
+                    </tr>
+                </tbody>
+            </template>
+        </table>
+        <div>总价：￥{{sum}}</div>
+        </template>
+
+        <div v-else>您的购物车是空的！</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

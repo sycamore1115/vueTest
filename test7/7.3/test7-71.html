@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!-- 1.点击触发子组件里的click事件 
+     2.找到click的对应方法handleIncrease
+     3.子组件的handleIncrease方法里用$emit来向外触发事件input，附加参数都会传给监听器回调
+     4.父组件v-model监听子组件input事件
+     5.将参数的值赋给total
+ -->
+<body>
+    <div id="app">
+        <p>总数：{{ total }}</p>
+        <!-- v-model监听子组件input事件，然后将 ++this.counter的值赋给total,v-model双向数据流，vue实例中的total也改变了-->
+        <my-component v-model='total'></my-component>
+    </div>
+    <script>
+        Vue.component('myComponent', {
+            template: `
+            <div>
+               <button @click="handleIncrease">+1</button>
+               <button @click="handleReduce">-1</button>
+            </div>`,
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                handleIncrease: function () {
+                    this.$emit('input', ++this.counter);
+                },
+                handleReduce: function () {
+                    this.$emit('input', --this.counter);
+                }
+            },
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            }
+        })
+    </script>
+</body>
+
+</html>

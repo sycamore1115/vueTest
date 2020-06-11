@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 普通情况下 radio 单选框仅仅能实现多选一的效果，可是一旦选择当中一个后，这个单选框就不可点击取消其选中状态了 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="radio" :checked='picked1'>
+        <label>单选按钮:{{picked1}}</label>
+        <br>
+        <hr>
+        
+        <!-- 单选框 -->
+        <!-- value表示单选按钮的值。它永远不会在客户端看到，但是在服务器上，这就是提交的数据 -->
+        <!-- 一个单选按钮组由具有相同 name属性的单选按钮组成。 一旦单选按钮组被建立, 选择那按钮组的任何单选按钮将会自动取消同组当前选择的任何按钮。 -->
+        <!-- 通过 v-model 绑定，Vue会帮我们解决分组问题。以前使用单选按钮时，是需要设置 name 属性的，现在用 v-model 的话，就不用设置 name 属性了 -->
+        <input type="radio" value="html" id="html" name="web">
+        <label for="html">HTML</label>
+        <br>
+        <input type="radio" value="js" id="js" name="web">
+        <label for="js">JavaScript</label>
+        <br>
+        <input type="radio" value="css" id="css" name="web">
+        <label for="css">CSS</label>
+        <br>
+
+        <!-- radio是单选，所以v-model中的值是一个value的字符串 -->
+        <hr>
+
+        <input type="radio" v-model='picked2' value="html" id="html">
+        <label for="html">HTML</label>
+        <br>
+        <input type="radio" v-model='picked2' value="js" id="js">
+        <label for="js">JavaScript</label>
+        <br>
+        <input type="radio" v-model='picked2' value="css" id="css">
+        <label for="css">CSS</label>
+        <br>
+        <P>选择的项是：{{picked2}}</P>
+
+        <hr>
+
+        <input type="radio" value="html" :checked="picked3 == 'html'" @change='picked3Change' name='picked3' id="html">
+        <label for="html">HTML</label>
+        <br>
+        <input type="radio"  value="js" :checked="picked3 == 'js'" @change='picked3Change' name='picked3' id="js">
+        <label for="js">JavaScript</label>
+        <br>
+        <input type="radio" value="css" :checked="picked3 == 'css'" @change='picked3Change'  name='picked3' id="css">
+        <label for="css">CSS</label>
+        <br>
+        <P>选择的项是：{{picked3}}</P>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                picked1: true,
+                picked2: 'css',
+                picked3: 'js',
+            },
+            methods: {
+                picked3Change: function(e){
+                    this.picked3 = e.target.value;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

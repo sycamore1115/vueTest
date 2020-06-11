@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<!-- 递归组件
+    1.给组件设置name属性
+    2.在组件的template里，使用组件的name，全局注册不设置name可以使用自定义标签名
+    3.必须给一个条件来限制递归数量，否则报错
+ -->
+
+<body>
+    <div id="app">
+        <child-component :count='1'></child-component>
+        <my-component :count='1'></my-component>
+    </div>
+    <script>
+        //组件在全局用 Vue.component() 注册时，全局 ID 自动作为组件的 name。
+        Vue.component('child-component', {
+            name: 'child-component2',
+            props: {
+                count: {
+                    type: Number,
+                    default: 1
+                }
+            },
+            template: `
+            <div class="child">
+                <p>child:{{count}}</p>
+                <child-component2 :count='count+1' v-if='count<3'></child-component2>
+            </div>`,
+        });
+
+        new Vue({
+            el: '#app',
+            components: {
+                'my-component': {
+                    name: 'my-component',
+                    props: {
+                        count: {
+                            type: Number,
+                            default: 1
+                        }
+                    },
+                    template: `
+                    <div class="my">
+                        <p>my:{{count}}</p>
+                        <my-component :count='count+1' v-if='count<3'></my-component>
+                    </div>`,
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

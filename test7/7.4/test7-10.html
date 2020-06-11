@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <chile-component>
+            <p>分发的内容</p><p>更多分发的内容</p>
+        </chile-component>
+    </div>
+    <script>
+        Vue.component('chile-component', {
+            template: 
+            `<div>
+                <p>123</p>
+                <slot>
+                    <p>如果父组件没有插入内容，我将作为默认出现</p>
+                </slot>
+            </div>`,
+            // template: `
+            // <div>
+            //     <p>如果父组件没有插入内容，我将作为默认出现</p>
+            // </div>`,
+            mounted: function() {
+                console.log(this.$slots.default);
+                console.log(this.$slots.default[0].elm.innerHTML);
+            },
+        })
+        new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>

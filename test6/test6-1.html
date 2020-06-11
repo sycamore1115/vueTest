@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- text类型的input中，v-model取代了value的值 -->
+        <input type="text" :value='text'>
+        <input type="text" value="4645" v-model='text'>
+        <p>输入的内容是：</p>
+        <p>{{text}}</p>
+        <!-- 文本域中v-model取代了</textarea>之间的值 -->
+        <textarea id='t1' placeholder="输入。。。">{{message}}</textarea>
+        <textarea id='t2' placeholder="输入。。。" :value='message'></textarea>
+        <textarea v-model='message' placeholder="输入。。。" @input='tt()'>12345</textarea>
+        <textarea @input='handleInput' placeholder="输入。。。"></textarea>
+        <p>输入的内容是：</p>
+        <p>{{message}}</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                text: "11111",
+                message: '99999'
+            },
+            methods: {
+                handleInput: function (e) {
+                    console.log(e);
+                    this.message = e.target.value;
+                },
+                tt: function () {
+                    var t1 = document.getElementById('t1');
+                    var t2 = document.getElementById('t2');
+                    console.log(t1);
+                    console.log(t1.innerHTML);
+                    console.log(t2.childNodes);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

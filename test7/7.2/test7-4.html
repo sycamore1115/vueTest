@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component warninig-text="提示信息"></my-component>
+    </div>
+    <script>
+        //vue组件名 和 props 可以用驼峰命名或短横命名均可 （驼峰命名会自动转换成短横命名）
+        //html中只可以用短横命名
+        //字符串模板中只能用驼峰命名
+        Vue.component('my-component', {
+            // props:['warninigText'],
+            props:['warninig-text'],
+            template: '<div>{{warninigText}}</div>'
+            // template: '<div>{{warninig-text}}</div>'
+        });
+        new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>
+

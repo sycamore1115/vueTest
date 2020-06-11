@@ -1,0 +1,77 @@
+<!-- 列表渲染指令：v-for -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <template v-for='book in filterBooks'>
+                <li>书名：{{book.name}}</li>
+                <li>作者：{{book.author}}</li>
+            </template>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                books: [{
+                        name: '《vue.js》',
+                        author: '123'
+                    },
+                    {
+                        name: '《es6》',
+                        author: '456'
+                    },
+                    {
+                        name: '《js》',
+                        author: '789'
+                    }
+                ]
+            },
+            computed: {
+                filterBooks: function () {
+                    return this.books.filter(function (book) {
+                        return book.name.match(/js/);
+                    });
+                }
+            },
+        });
+        //会改变原始数组
+        // app.books.push({
+        //     name: '《css》',
+        //     author: '0000'
+        // });
+        //不会改变原始数组，返回新数组，需要赋值语句
+        // app.books = app.books.filter(function (item) {
+        //     return item.name.match(/js/);
+        // });
+
+
+        // 不能检测的变动
+        // app.books[3] = {
+        //     name: '《html》',
+        //     author: 'tttt'
+        // }
+        //方法1
+        // Vue.set(app.books,3,{
+        //     name: '《html》',
+        //     author: 'tttt'
+        // });
+        //方法2
+        // app.books.splice(3,0,{
+        //     name: '《html》',
+        //     author: 'tttt'
+        // })
+        // app.books.splice(1);
+    </script>
+</body>
+
+</html>

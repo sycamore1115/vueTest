@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{date | formatDate}}
+    </div>
+
+    <script>
+        //在月份、日期、小时等小于10 时前面补0
+        var padDate = function (value) {
+            return value < 10 ? "0" + value : value;
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                date: new Date()
+            },
+            //添加过滤方法
+            filters: {
+                formatDate: function (date) {
+                    return date.getFullYear() + '-' + padDate(date.getMonth() + 1) + '-' + padDate(date.getDate())
+                           + ' ' + padDate(date.getHours()) +':'+ padDate(date.getMinutes()) +':'+ padDate(date.getSeconds());
+                }
+            },
+            mounted: function () {
+                this.timer = setInterval(() => {
+                    this.date = new Date();
+                }, 1000);
+            },
+            beforeDestroy: function () {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

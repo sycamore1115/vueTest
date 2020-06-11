@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{date}}
+    </div>
+
+    <script>
+        // var date = "123"
+        var app = new Vue({
+            el: '#app',
+            data: {
+                date: new Date()
+            },
+            // mounted: function () {
+            //     var _this = this; //声明一个变量指向Vue 实例this ，保证作用域一致
+            //     this.timer = setInterval(function () {
+            //         // console.log(this.date);
+            //         _this.date = new Date(); //修改数据date
+            //     }, 1000);
+            // },
+            mounted: function () {
+                this.timer = setInterval( () => {
+                    this.date = new Date(); 
+                }, 1000);
+            },
+            beforeDestroy: function () {
+                if (this.timer) {
+                    clearInterval(this.timer); //：在Vue 实例销毁前，清除我们的定时器
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

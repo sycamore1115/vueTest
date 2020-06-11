@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-list :books='books'>
+            <!--  v-for='book in books'  props.book-name='book.name' -->
+            <template slot='book' scope='props'>
+                <li>{{props.bookName}}</li>
+            </template>
+        </my-list>
+        <ul>
+            <template v-for='book in books'>
+                <li>{{book.name}}</li>
+            </template>
+        </ul>
+    </div>
+    <script>
+        Vue.component('my-list',{
+            props: {
+                books: {
+                    type: Array,
+                    default: function(){
+                        return [];
+                    }
+                }
+            },
+            template: `
+            <ul>
+                <slot name='book' v-for='book in books' :book-name='book.name'></slot>
+            </ul>`
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {name: '《Vue.js实战》'},
+                    {name: '《JavaScript语言精粹》'},
+                    {name: '《JavaScript高级程序设计》'}
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
